@@ -1,5 +1,11 @@
 @import "../../assets/fonts/fonts";
 
+:root {
+    --clr-primary-dark: #222B45;
+    --clr-gray-light: #FEFEFE;
+    --clr-secondary-dark: #465069;
+}
+
 html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -20,4 +26,51 @@ body {
 .container {
     font-size: 1.4rem;
     display: grid;
+    grid-template-columns: [sidebar-start] 40rem [sidebar-end content-start] 1fr [content-end];
+}
+
+.dark-theme {
+    background-color: var(--clr-primary-dark);
+    color: var(--clr-gray-light);
+}
+
+.top-panel {
+    grid-column: sidebar-start / content-end;  
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+
+    .menu-toggler {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__line {
+            background-color: var(--clr-secondary-dark);
+            width: 100%;
+            height: .3rem;
+            position: relative;
+
+            &:after {
+                content: "";
+                background-color: var(--clr-secondary-dark);
+                position: absolute;
+                width: 3rem;
+                height: .3rem;
+                top: 1rem;
+            }
+        }
+    }
+}
+
+.sidebar {
+    grid-column: sidebar-start / sidebar-end;
+    background-color: maroon;
+}
+
+.main {
+    grid-column: content-start / content-end;
+    background-color: blueviolet;
 }

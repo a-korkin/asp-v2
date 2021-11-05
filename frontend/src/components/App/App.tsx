@@ -16,9 +16,14 @@ const App = () => {
     }, [])
 
     return (
-        <div className="container">
-            <h2>Адресная социальная помощь</h2>
-            <p>асофт</p>
+        <div className="container dark-theme">
+            <div className="top-panel">
+                <div className="menu-toggler">
+                    <div className="menu-toggler__line"></div>
+                </div>
+            </div>
+            <div className="sidebar">Sidebar</div>
+            <div className="main">Main contnent</div>
         </div>
     );
 }
