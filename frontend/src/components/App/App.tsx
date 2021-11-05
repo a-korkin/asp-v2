@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import "./App.scss";
 
 const App = () => {
 
@@ -15,7 +16,10 @@ const App = () => {
     }, [])
 
     return (
-        <h1>Hello world</h1>
+        <div className="container">
+            <h2>Адресная социальная помощь</h2>
+            <p>асофт</p>
+        </div>
     );
 }
 
