@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import Column
 from sqlalchemy.dialects.postgresql import UUID
-from db.base import Base
+from db.setup import Base
 
 class Entity(Base):
     __tablename__ = "cd_entities"

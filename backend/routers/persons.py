@@ -5,7 +5,6 @@ from fastapi.exceptions import HTTPException
 from fastapi.params import Depends
 from sqlalchemy.orm.session import Session
 from db.setup import get_db
-from models.persons import Person
 from schemas.persons import PersonSchema, PersonOutSchema
 from repositories.persons import get_person, get_persons, create_person, update_person, delete_person
 
