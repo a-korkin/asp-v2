@@ -1,27 +1,19 @@
-import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import TopPanel from "../TopPanel";
+
 import "./App.scss";
 
-const App = () => {
+const App: React.FC = () => {
+    const [sideBarVisible, setSideBarVisible] = useState<boolean>(false);
 
-    const fetchData = async() => {
-        const resp = await axios.get("http://localhost:5000/api/v1/persons")
-            .then(res => res.data);
-        return resp;
+    const sideBarToggleHandler = () => {
+        setSideBarVisible(!sideBarVisible);
+        console.log(!sideBarVisible);
     }
 
-    useEffect(() => {
-        const response = fetchData();
-        console.log(response);
-    }, [])
-
     return (
-        <div className="container dark-theme">
-            <div className="top-panel">
-                <div className="menu-toggler">
-                    <div className="menu-toggler__line"></div>
-                </div>
-            </div>
+        <div className={sideBarVisible ? "container dark-theme" : "container toggle dark-theme"}>
+            <TopPanel checked={sideBarVisible} onChecked={sideBarToggleHandler} />
             <div className="sidebar">Sidebar</div>
             <div className="main">Main contnent</div>
         </div>

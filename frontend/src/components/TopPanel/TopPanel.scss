@@ -1,0 +1,54 @@
+.top-panel {
+    grid-column: sidebar-start / content-end;  
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.menu-burger {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & input {
+        display: none;
+    }
+    
+    &__line,
+    &__line::after,
+    &__line::before {
+        background-color: var(--clr-secondary-dark);
+        width: 100%;
+        height: .3rem;
+        transition: all .3s;
+    }
+    
+    &__line {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 1rem;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -1rem;
+        }
+    }
+
+    &:hover &__line::after {
+        top: 0;
+        transform: rotate(135deg);
+    }
+
+    &:hover &__line::before {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}
