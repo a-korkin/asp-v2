@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, Date, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from .entities import Entity
 
@@ -10,3 +10,4 @@ class Person(Entity):
     last_name = Column(String(500), name="c_last_name", nullable=False, comment="фамилия")
     first_name = Column(String(500), name="c_first_name", nullable=False, comment="имя")
     middle_name = Column(String(500), name="c_middle_name", comment="имя")
+    birth_date = Column(Date, name="d_birthdate", nullable=False, comment="дата рождения")

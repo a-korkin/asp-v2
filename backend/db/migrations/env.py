@@ -31,7 +31,7 @@ target_metadata = Base.metadata
 
 def include_name(name, type_, parent_names):
     if type_ == "schema":
-        return name in ["public", "common"]
+        return name in ["public","common","admin"]
     else:
         return True
 

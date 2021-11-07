@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Action } from "../actions";
 import $api from "../../http";
-import { NavigationModel } from "../../models/public/NavigationModel";
+import { NavigationModel } from "../../models/admin/NavigationModel";
 
 export const fetchNavigations = () => async (dispatch: Dispatch<Action>) => {
     dispatch({

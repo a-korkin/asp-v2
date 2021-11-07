@@ -6,6 +6,7 @@ class NavigationBaseSchema(BaseSchema):
     title: str
     slug: str
     order: int
+    block: bool
     parent_id: Optional[UUID]
 
 class NavigationSchema(NavigationBaseSchema):

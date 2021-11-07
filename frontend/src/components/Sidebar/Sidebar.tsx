@@ -3,9 +3,9 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { FaAngleLeft } from "react-icons/fa";
 import Loading from "../Loading";
+import { NavigationModel } from "../../models/admin/NavigationModel";
 
 import "./Sidebar.scss";
-import { NavigationModel } from "../../models/public/NavigationModel";
 
 const Sidebar: React.FC = () => {
     const { fetchNavigations } = useActions();
@@ -17,8 +17,38 @@ const Sidebar: React.FC = () => {
     
     console.log(data);
 
-    const getChildNav = (parent_id: string) => {
-        const childs = data.filter(w => w.parent_id === parent_id);
+    const getMainNav = (nav: NavigationModel) => {
+        return (
+            <div className="menu__block">
+                <input 
+                    className="menu__block-input" 
+                    type="checkbox" 
+                    name={nav.id} 
+                    id={nav.id} 
+                />
+
+                <label 
+                    htmlFor={nav.id} 
+                    className="menu__block-label"
+                >
+                    <span className="menu__block-title">
+                        {nav.title}
+                    </span>
+                    <span className="menu__block-icon">
+                        <FaAngleLeft />
+                    </span>
+                </label>
+
+                {
+                    data.some(w => w.parent_id === nav.id) &&
+                    getChildNav(nav)
+                }
+            </div>
+        );
+    }
+
+    const getChildNav = (nav: NavigationModel) => {
+        const childs = data.filter(w => w.parent_id === nav.id);
 
         return (
             <ul className="menu__block-list">
@@ -36,6 +66,13 @@ const Sidebar: React.FC = () => {
         );
     }
 
+    const getNav = (nav: NavigationModel): JSX.Element => {
+        if (nav.block)
+            return getMainNav(nav);
+        else 
+            return getChildNav(nav);
+    }
+
     const sortNavs = (a: NavigationModel, b: NavigationModel) => {
         if (a.order > b.order)
             return 1;
@@ -50,31 +87,32 @@ const Sidebar: React.FC = () => {
                 {
                     !isLoading && !error &&
                     data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
-                        <div className="menu__block">
-                            <input 
-                                className="menu__block-input" 
-                                type="checkbox" 
-                                name={nav.id} 
-                                id={nav.id} 
-                            />
+                        getNav(nav)
+                        // <div className="menu__block">
+                        //     <input 
+                        //         className="menu__block-input" 
+                        //         type="checkbox" 
+                        //         name={nav.id} 
+                        //         id={nav.id} 
+                        //     />
 
-                            <label 
-                                htmlFor={nav.id} 
-                                className="menu__block-label"
-                            >
-                                <span className="menu__block-title">
-                                    {nav.title}
-                                </span>
-                                <span className="menu__block-icon">
-                                    <FaAngleLeft />
-                                </span>
-                            </label>
+                        //     <label 
+                        //         htmlFor={nav.id} 
+                        //         className="menu__block-label"
+                        //     >
+                        //         <span className="menu__block-title">
+                        //             {nav.title}
+                        //         </span>
+                        //         <span className="menu__block-icon">
+                        //             <FaAngleLeft />
+                        //         </span>
+                        //     </label>
 
-                            {
-                                data.some(w => w.parent_id === nav.id) &&
-                                getChildNav(nav.id)
-                            }
-                        </div>
+                        //     {
+                        //         data.some(w => w.parent_id === nav.id) &&
+                        //         getChildNav(nav)
+                        //     }
+                        // </div>
                     )
                 }
             </div>

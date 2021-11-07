@@ -1,4 +1,4 @@
-import { NavigationModel } from "../../models/public/NavigationModel";
+import { NavigationModel } from "../../models/admin/NavigationModel";
 import { ActionType } from "../action-types";
 
 interface FetchNavigationsAction {
