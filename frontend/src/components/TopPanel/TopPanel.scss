@@ -3,12 +3,12 @@
     padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
-    border-bottom: .2rem solid #000;
+    border-bottom: .15rem solid #000;
 }
 
 .menu-burger {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -24,6 +24,7 @@
         background-color: var(--clr-secondary-dark);
         width: 100%;
         height: .3rem;
+        border-radius: 20rem;
         transition: all .3s;
     }
     
@@ -33,13 +34,13 @@
         &::after {
             content: "";
             position: absolute;
-            top: 1rem;
+            top: .7rem;
         }
 
         &::before {
             content: "";
             position: absolute;
-            top: -1rem;
+            top: -.7rem;
         }
     }
 

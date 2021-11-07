@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
         fetchNavigations();
     }, []);
     
-    console.log(data);
+    // console.log(data);
 
     const getMainNav = (nav: NavigationModel) => {
         return (
@@ -88,7 +88,10 @@ const Sidebar: React.FC = () => {
                     !isLoading && !error &&
                     data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
                         getNav(nav)
-                        // <div className="menu__block">
+                        // <div 
+                        //     key={nav.id}
+                        //     className="menu__block"
+                        // >
                         //     <input 
                         //         className="menu__block-input" 
                         //         type="checkbox" 

@@ -19,4 +19,5 @@ class NavigationInSchema(NavigationBaseSchema):
     ...
 
 class NavigationOutSchema(NavigationSchema):    
-    childs: Optional[List[NavigationChildSchema]]
+    ...
+    # childs: Optional[List[NavigationChildSchema]]
