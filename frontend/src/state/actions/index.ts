@@ -1,5 +1,5 @@
+import { NavigationModel } from "../../models/public/NavigationModel";
 import { ActionType } from "../action-types";
-import { NavigationModel } from "../models/auth/NavigationModel";
 
 interface FetchNavigationsAction {
     type: ActionType.FETCH_NAVIGATIONS;

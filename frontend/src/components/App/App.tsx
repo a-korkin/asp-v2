@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import TopPanel from "../TopPanel";
+import Sidebar from "../Sidebar";
 
 import "./App.scss";
 
 const App: React.FC = () => {
-    const [sideBarVisible, setSideBarVisible] = useState<boolean>(false);
+    const [sideBarVisible, setSideBarVisible] = useState<boolean>(true);
 
     const sideBarToggleHandler = () => {
         setSideBarVisible(!sideBarVisible);
@@ -14,7 +15,7 @@ const App: React.FC = () => {
     return (
         <div className={sideBarVisible ? "container dark-theme" : "container toggle dark-theme"}>
             <TopPanel checked={sideBarVisible} onChecked={sideBarToggleHandler} />
-            <div className="sidebar">Sidebar</div>
+            <Sidebar />
             <div className="main">Main contnent</div>
         </div>
     );

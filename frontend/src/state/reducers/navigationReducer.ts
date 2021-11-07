@@ -1,6 +1,6 @@
-import { ActionType } from "../../action-types";
-import { Action } from "../../actions";
-import { NavigationModel } from "../../models/auth/NavigationModel";
+import { ActionType } from "../action-types";
+import { Action } from "../actions";
+import { NavigationModel } from "../../models/public/NavigationModel";
 
 
 interface NavigationState {

@@ -5,7 +5,7 @@ from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from typing import List
 from db.setup import get_db
-from schemas.navigations import NavigationSchema, NavigationOutSchema
+from schemas.navigations import NavigationInSchema, NavigationOutSchema
 from repositories.navigations import get_item, get_items, create_item, update_item, delete_item
 
 router = APIRouter()
@@ -24,11 +24,11 @@ async def get(db: Session=Depends(get_db)) -> NavigationOutSchema:
     return item
 
 @router.post("/", response_model=NavigationOutSchema)
-async def create(item: NavigationSchema, db: Session=Depends(get_db)) -> NavigationOutSchema:
+async def create(item: NavigationInSchema, db: Session=Depends(get_db)) -> NavigationOutSchema:
     return create_item(db=db, item=item)
 
 @router.put("/{id}", response_model=NavigationOutSchema)   
-async def update(item: NavigationSchema, db: Session=Depends(get_db)) -> NavigationOutSchema:
+async def update(item: NavigationInSchema, db: Session=Depends(get_db)) -> NavigationOutSchema:
     item = update_item(db=db, id=id, item=item)   
 
     if not item:

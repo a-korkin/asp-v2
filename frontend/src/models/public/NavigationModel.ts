@@ -1,5 +1,6 @@
 export interface NavigationModel {
     id: string;
     title: string;
-    childs: NavigationModel[] 
+    parent_id: string;
+    childs: NavigationModel[]; 
 }
