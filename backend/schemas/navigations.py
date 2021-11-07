@@ -4,10 +4,12 @@ from .base import BaseSchema
 
 class NavigationBaseSchema(BaseSchema):
     title: str
+    slug: str
+    order: int
+    parent_id: Optional[UUID]
 
 class NavigationSchema(NavigationBaseSchema):
     id: UUID
-    parent_id: Optional[UUID]
 
 class NavigationChildSchema(NavigationSchema):
     ...

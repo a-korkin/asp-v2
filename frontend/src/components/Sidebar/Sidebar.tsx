@@ -5,6 +5,7 @@ import { FaAngleLeft } from "react-icons/fa";
 import Loading from "../Loading";
 
 import "./Sidebar.scss";
+import { NavigationModel } from "../../models/public/NavigationModel";
 
 const Sidebar: React.FC = () => {
     const { fetchNavigations } = useActions();
@@ -16,39 +17,66 @@ const Sidebar: React.FC = () => {
     
     console.log(data);
 
+    const getChildNav = (parent_id: string) => {
+        const childs = data.filter(w => w.parent_id === parent_id);
+
+        return (
+            <ul className="menu__block-list">
+                {
+                    childs.sort(sortNavs).map((nav) => 
+                        <li 
+                            key={nav.id} 
+                            className="menu__block-list-item"
+                        >
+                            <a href="#">{nav.title}</a>
+                        </li>
+                    )
+                }
+            </ul>
+        );
+    }
+
+    const sortNavs = (a: NavigationModel, b: NavigationModel) => {
+        if (a.order > b.order)
+            return 1;
+        return -1;
+    }
+
     return (
         <div className="sidebar">
-            {/* {isLoading && <Loading />}
-            {
-                !isLoading && !error && 
-                data.map((nav) => <div key={nav.id}>{nav.title}</div>)
-            } */}
             <div className="menu">
-                <div className="menu__block">
-                    <input 
-                        className="menu__block-input" 
-                        type="checkbox" 
-                        name="1" 
-                        id="1" 
-                    />
-                    <label 
-                        htmlFor="1" 
-                        className="menu__block-label"
-                    >
-                        <span className="menu__block-title">
-                            Картотека граждан
-                        </span>
-                        <span className="menu__block-icon">
-                            <FaAngleLeft />
-                        </span>
-                    </label>
+                {isLoading && <Loading />}
 
-                    <ul>
-                        <li>Физические лица</li>
-                        <li>Объединение физлиц</li>
-                        <li>Обмен информацией</li>
-                    </ul>
-                </div>
+                {
+                    !isLoading && !error &&
+                    data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
+                        <div className="menu__block">
+                            <input 
+                                className="menu__block-input" 
+                                type="checkbox" 
+                                name={nav.id} 
+                                id={nav.id} 
+                            />
+
+                            <label 
+                                htmlFor={nav.id} 
+                                className="menu__block-label"
+                            >
+                                <span className="menu__block-title">
+                                    {nav.title}
+                                </span>
+                                <span className="menu__block-icon">
+                                    <FaAngleLeft />
+                                </span>
+                            </label>
+
+                            {
+                                data.some(w => w.parent_id === nav.id) &&
+                                getChildNav(nav.id)
+                            }
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

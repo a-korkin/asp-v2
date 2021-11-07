@@ -49,4 +49,5 @@ body {
 .main {
     grid-column: content-start / content-end;
     background-color: blueviolet;
+    min-height: calc(100vh - 5.2rem);
 }
