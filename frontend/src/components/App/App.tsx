@@ -9,7 +9,6 @@ const App: React.FC = () => {
 
     const sideBarToggleHandler = () => {
         setSideBarVisible(!sideBarVisible);
-        console.log(!sideBarVisible);
     }
 
     return (

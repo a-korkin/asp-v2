@@ -46,11 +46,6 @@ body {
     color: var(--clr-gray-light);
 }
 
-.sidebar {
-    grid-column: sidebar-start / sidebar-end;
-    background-color: maroon;
-}
-
 .main {
     grid-column: content-start / content-end;
     background-color: blueviolet;
