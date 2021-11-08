@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { FaAngleLeft } from "react-icons/fa";
-import Loading from "../Loading";
 import { NavigationModel } from "../../models/admin/NavigationModel";
+import Loading from "../Loading";
+import Nav from "./Nav";
 
 import "./Sidebar.scss";
 
@@ -50,21 +51,19 @@ const Sidebar: React.FC = () => {
     const getChildNav = (nav: NavigationModel) => {
         const childs = data.filter(w => w.parent_id === nav.id);
 
-        // getNav(nav);
-
         return (
-            <ul className="menu__block-list">
+            <div className="menu__block-list">
                 {
                     childs.sort(sortNavs).map((nav) => 
-                        <li 
+                        <div 
                             key={nav.id} 
                             className="menu__block-list-item"
                         >
                             <a href="#">{nav.title}</a>
-                        </li>
+                        </div>
                     )
                 }
-            </ul>
+            </div>
         );
     }
 
@@ -83,45 +82,65 @@ const Sidebar: React.FC = () => {
         return -1;
     }
 
+    const createChilds = (childs: NavigationModel[]) => {
+        return (
+            childs.map((nav) => (
+                <>
+                <div key={nav.id}>{nav.title}</div>
+                {
+                    data.filter(w => w.parent_id === nav.id).map((child) => {
+                        const subChilds = data.filter(w => w.parent_id === child.id).map(a => a.title);
+                        if (subChilds.length > 0) {
+                            // createChilds(subChilds);
+                            // console.log(subChilds);
+
+                        } 
+                        return (
+                            <div style={{paddingLeft: '1rem'}} key={child.id}>
+                                {child.title}
+                                {subChilds.join("|")}
+                            </div>
+                        )
+                    })
+                }
+                </>
+            ))
+        );
+    }
+
+    const createNavs = () => {
+        return (
+            data.filter(w => w.parent_id === null).map((nav) => (
+                <>
+                <div key={nav.id}>{nav.title}</div>
+                {
+                    data.filter(w => w.parent_id === nav.id).map((child) => 
+                        <div style={{paddingLeft: '1rem'}} key={child.id}>{child.title}</div>
+                    )
+                    
+                    // console.log("fds")
+                    // createChilds(data.filter(w => w.parent_id === nav.id))
+                }
+                </>
+            ))
+        );
+    }
+
     return (
         <div className="sidebar">
             <div className="menu">
                 {isLoading && <Loading />}
 
                 {
-                    !isLoading && !error &&
-                    data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
+                    // !isLoading && !error &&
+                    // // data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
                     // data.sort(sortNavs).map((nav) => 
-                        getNav(nav)
-                        // <div 
-                        //     key={nav.id}
-                        //     className="menu__block"
-                        // >
-                        //     <input 
-                        //         className="menu__block-input" 
-                        //         type="checkbox" 
-                        //         name={nav.id} 
-                        //         id={nav.id} 
-                        //     />
+                    //     getNav(nav)
+                    // )
 
-                        //     <label 
-                        //         htmlFor={nav.id} 
-                        //         className="menu__block-label"
-                        //     >
-                        //         <span className="menu__block-title">
-                        //             {nav.title}
-                        //         </span>
-                        //         <span className="menu__block-icon">
-                        //             <FaAngleLeft />
-                        //         </span>
-                        //     </label>
-
-                        //     {
-                        //         data.some(w => w.parent_id === nav.id) &&
-                        //         getChildNav(nav)
-                        //     }
-                        // </div>
-                    )
+                    // createNavs()
+                    createChilds(data.filter(w => w.parent_id === null))
+                    // <Nav childs={data.filter(w => w.parent_id === null)} allData={data} />
                 }
             </div>
         </div>
