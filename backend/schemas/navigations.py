@@ -12,12 +12,14 @@ class NavigationBaseSchema(BaseSchema):
 class NavigationSchema(NavigationBaseSchema):
     id: UUID
 
-class NavigationChildSchema(NavigationSchema):
-    ...
+# class NavigationChildSchema(NavigationSchema):
+#     ...
+
+class NavigationChildSchema(NavigationSchema):    
+    childs: Optional[List[NavigationSchema]]
 
 class NavigationInSchema(NavigationBaseSchema):    
     ...
 
-class NavigationOutSchema(NavigationSchema):    
-    ...
-    # childs: Optional[List[NavigationChildSchema]]
+class NavigationOutSchema(NavigationSchema):  
+    childs: Optional[List[NavigationChildSchema]]

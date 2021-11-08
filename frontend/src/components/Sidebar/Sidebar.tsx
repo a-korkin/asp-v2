@@ -4,7 +4,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { FaAngleLeft } from "react-icons/fa";
 import { NavigationModel } from "../../models/admin/NavigationModel";
 import Loading from "../Loading";
-import Nav from "./Nav";
+import Menu from "./Menu";
 
 import "./Sidebar.scss";
 
@@ -130,18 +130,19 @@ const Sidebar: React.FC = () => {
         <div className="sidebar">
             <div className="menu">
                 {isLoading && <Loading />}
+                <Menu items={data.filter(w => w.parent_id === null)} />
 
-                {
-                    // !isLoading && !error &&
-                    // // data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
-                    // data.sort(sortNavs).map((nav) => 
-                    //     getNav(nav)
-                    // )
+                {/* {
+                    !isLoading && !error &&
+                    // data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
+                    data.sort(sortNavs).map((nav) => 
+                        getNav(nav)
+                    )
 
                     // createNavs()
-                    createChilds(data.filter(w => w.parent_id === null))
+                    // createChilds(data.filter(w => w.parent_id === null))
                     // <Nav childs={data.filter(w => w.parent_id === null)} allData={data} />
-                }
+                } */}
             </div>
         </div>
     );
