@@ -4,6 +4,5 @@ export interface NavigationModel {
     parent_id: string;
     slug: string;
     order: number;
-    block: boolean;
     childs: NavigationModel[]; 
 }
