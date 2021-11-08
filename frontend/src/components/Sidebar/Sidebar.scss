@@ -25,40 +25,8 @@
             border-radius: 10rem;
         }
 
-        &__item {
-            .menu__block {
-                &-input {
-                    display: none;
-                    appearance: none;
-                    
-                    &:checked + .menu__block-label > .menu__block-icon {
-                        transform: rotate(-90deg);
-                    }
-
-                    &:checked ~ .menu__item-childs {
-                        display: none;
-                    }
-                }
-                &-label {
-                    text-transform: uppercase;
-                    display: flex;
-                    padding: 1.5rem;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                &-icon {
-                    display: block;
-                    margin-left: auto;
-                    transition: all .2s;
-                }
-            }
-            .menu__element {
-            }
-
-            &-childs {
-                padding-left: 1rem;
-            }
+        &__list {
+            
         }
     }
 }

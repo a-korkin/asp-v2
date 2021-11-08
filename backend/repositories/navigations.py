@@ -15,7 +15,7 @@ def get_item(db: Session, id: UUID) -> NavigationOutSchema:
     return None
 
 def get_items(db: Session) -> List[NavigationOutSchema]:
-    list = db.query(Navigation).all()
+    list: List[Navigation] = db.query(Navigation).filter(Navigation.childs!=None).all()
     return [NavigationOutSchema.from_orm(item) for item in list]
 
 def create_item(db: Session, item: NavigationInSchema) -> NavigationOutSchema:
