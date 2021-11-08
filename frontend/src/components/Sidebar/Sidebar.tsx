@@ -50,6 +50,8 @@ const Sidebar: React.FC = () => {
     const getChildNav = (nav: NavigationModel) => {
         const childs = data.filter(w => w.parent_id === nav.id);
 
+        // getNav(nav);
+
         return (
             <ul className="menu__block-list">
                 {
@@ -67,8 +69,10 @@ const Sidebar: React.FC = () => {
     }
 
     const getNav = (nav: NavigationModel): JSX.Element => {
-        if (nav.block)
+        if (nav.block) {
+            console.log(nav);
             return getMainNav(nav);
+        }
         else 
             return getChildNav(nav);
     }
@@ -87,6 +91,7 @@ const Sidebar: React.FC = () => {
                 {
                     !isLoading && !error &&
                     data.sort(sortNavs).filter(w => w.parent_id === null).map((nav) => 
+                    // data.sort(sortNavs).map((nav) => 
                         getNav(nav)
                         // <div 
                         //     key={nav.id}

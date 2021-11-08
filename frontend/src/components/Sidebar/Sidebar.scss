@@ -6,9 +6,10 @@
     & .menu {
         min-height: 20rem;
         // min-height: calc(100vh - 4.15rem);
-        overflow: auto;
+        overflow: overlay;
         display: flex;
         flex-direction: column;
+        padding-right: 1rem;
     
         &::-webkit-scrollbar {
             width: 1rem;
