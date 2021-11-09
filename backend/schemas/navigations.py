@@ -6,16 +6,15 @@ class NavigationBaseSchema(BaseSchema):
     title: str
     slug: str
     order: int
-    parent_id: Optional[UUID]
-    
-class NavigationSchema(NavigationBaseSchema):
-    id: UUID
-
-class NavigationChildSchema(NavigationSchema):    
-    childs: Optional[List[NavigationSchema]]
+    parent_id: Optional[UUID] 
 
 class NavigationInSchema(NavigationBaseSchema):    
     ...
 
-class NavigationOutSchema(NavigationSchema):  
-    childs: Optional[List[NavigationChildSchema]]
+class NavigationSchema(NavigationBaseSchema):
+    id: UUID
+
+class NavigationOutSchema(NavigationSchema): 
+    childs: Optional[List["NavigationOutSchema"]]
+
+NavigationOutSchema.update_forward_refs()
