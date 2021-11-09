@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { FaAngleLeft } from "react-icons/fa";
-import { NavigationModel } from "../../models/admin/NavigationModel";
 import Loading from "../Loading";
 import Menu from "./Menu";
 
@@ -12,8 +10,12 @@ const Sidebar: React.FC = () => {
     const { fetchNavigations } = useActions();
     const { isLoading, error, data } = useTypedSelector(state => state.navigation);
     
+    const fetchMenu = useRef(() => {});
+    fetchMenu.current = fetchNavigations;
+
     useEffect(() => {
-        fetchNavigations();
+        // fetchNavigations();
+        fetchMenu.current();
     }, []);
     
     return (

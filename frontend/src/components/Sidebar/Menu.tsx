@@ -1,5 +1,5 @@
 import React from "react";
-import { FaAngleLeft, FaAngleDown } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import { NavigationModel } from "../../models/admin/NavigationModel";
 
 interface INavProps {
@@ -12,10 +12,7 @@ const Menu: React.FC<INavProps> = ({ items }) => {
         {
             items.map(item => {
                 const isBlock = item.childs?.length > 0;
-                if (isBlock) {
-                    console.log(item.title);
-                }
-
+                
                 return (
                 <li className="menu__list-item"
                     key={item.id}
