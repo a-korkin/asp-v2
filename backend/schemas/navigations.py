@@ -7,7 +7,7 @@ class NavigationBaseSchema(BaseSchema):
     slug: str
     order: int
     parent_id: Optional[UUID]
-
+    
 class NavigationSchema(NavigationBaseSchema):
     id: UUID
 
